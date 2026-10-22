@@ -8,6 +8,8 @@
 
 **What task did you give the agent?**
 
+I supplied the design and instructions (the assignment phases, the algorithm recipe, the features, the profiles, and which stretch features to do). The agent did the implementation. Task:
+
 Build the whole Music Recommender project end to end from the Phase 1–5 instructions: expand the dataset, implement `load_songs`, `score_song`, `recommend_songs`, a CLI table, tests, the README, and the model card.
 
 **Prompts used:**
@@ -28,7 +30,7 @@ Build the whole Music Recommender project end to end from the Phase 1–5 instru
 - The starter `main.py` used `from recommender import ...`, which fails under `python -m src.main`; changed to `from src.recommender import ...`.
 - Ran `python3 -m src.main` and `pytest` (8 passing) and pasted the real output into the docs.
 - Checked claims in the docs against the output (e.g. that Gym Hero moves from #2 to #3 in the energy-focused experiment, and that the folk song still wins for the conflicted profile).
-- **Personal reflection:** first drafted by the agent, then rewritten in the user's own casual voice (README and model card) on request.
+- **Personal reflection:** the agent drafted it from the session, then rewrote it in my own casual voice when I asked.
 - **Still for you to do:** check that the numbers in the docs match your own runs, then commit and push, and make sure the repo is public.
 
 ---
@@ -51,7 +53,7 @@ Build the whole Music Recommender project end to end from the Phase 1–5 instru
 - Confirmed the Retro profile's reasons list every new attribute and that the scores add up (e.g. Night Drive Loop: 2.0 + 1.0 + 0.85 + 0.39 + 0.5 + 1.00 + 0.40 + 0.30 + 0.5 = 6.94).
 - Noticed tabulate was printing `6.00` as `6`; fixed with `disable_numparse=True`.
 - `pytest`: 12 passing.
-- **Known weakness:** tags and decades were assigned by the agent as plausible guesses; a human should review them.
+- **Known weakness:** the agent filled in the tags, decades and popularity numbers as plausible guesses, so they are not real data and should be reviewed by hand.
 
 ---
 
@@ -63,4 +65,4 @@ Build the whole Music Recommender project end to end from the Phase 1–5 instru
 
 **How did AI help you brainstorm or implement it?**
 
-The assistant chose Strategy over subclasses or `if/else` branches because the modes differ only in numbers, not in behaviour. A weights object keeps `score_song` as one function, makes adding a mode a one-line change, and keeps the "doubled energy, halved genre" experiment easy to run.
+The modes and their weights came from my design (genre-first, mood-first, energy-focused, and the "double energy, halve genre" experiment). I had the agent implement them, and it structured them as Strategy objects rather than subclasses or `if/else` branches, because the modes differ only in numbers, not in behaviour. A weights object keeps `score_song` as one function and makes adding a mode a one-line change.
